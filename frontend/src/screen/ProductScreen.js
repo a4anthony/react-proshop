@@ -12,7 +12,7 @@ const ProductScreen = ({ match }) => {
       setProduct(data);
     };
     fetchProduct();
-  }, []);
+  }, [match]);
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
@@ -28,9 +28,10 @@ const ProductScreen = ({ match }) => {
               <h3>{product.name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
+              <h1>{product.rating}</h1>
               <Rating
-                text={`${product.numReviews} review`}
                 value={product.rating}
+                text={`${product.numReviews} reviews`}
               />
             </ListGroup.Item>
             <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
