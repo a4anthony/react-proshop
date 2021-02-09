@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
-import Rating from "../components/Rating";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Rating from "../components/Rating";
 
 const ProductScreen = ({ match }) => {
   const [product, setProduct] = useState({});
@@ -28,7 +28,6 @@ const ProductScreen = ({ match }) => {
               <h3>{product.name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
-              <h1>{product.rating}</h1>
               <Rating
                 value={product.rating}
                 text={`${product.numReviews} reviews`}

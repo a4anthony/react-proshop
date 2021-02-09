@@ -4,6 +4,10 @@ main {
 .rating span {
   margin: 0.1rem;
 }
+.rating span.text {
+  font-size: 13px;
+  margin: 0;
+}
 h3 {
   padding: 1rem 0;
 }
