@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
