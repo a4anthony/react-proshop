@@ -1,7 +1,7 @@
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { listUsers } from "../actions/userActions";
+import { deleteUser, listUsers } from "../actions/userActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { Button, Table } from "react-bootstrap";
@@ -14,15 +14,22 @@ const UserListScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {
       history.push(`/login`);
     }
-  }, [dispatch, history]);
+  }, [dispatch, history, successDelete]);
 
-  const deleteHandler = () => {};
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure")) {
+      dispatch(deleteUser(id));
+    }
+  };
   return (
     <>
       <h3>Users</h3>
@@ -63,12 +70,11 @@ const UserListScreen = ({ history }) => {
                     </Button>
                   </LinkContainer>
                   <Button
-                    variant={"danger"}
-                    className={"btn-sm"}
-                    onClick={deleteHandler(user._id)}
+                    variant="danger"
+                    className="btn-sm"
+                    onClick={() => deleteHandler(user._id)}
                   >
-                    {" "}
-                    <i className={"fas fa-trash"} />
+                    <i className="fas fa-trash" />
                   </Button>
                 </td>
               </tr>
