@@ -25,12 +25,15 @@ import {
   ORDER_LIST_MY_SUCCESS,
 } from "../constants/orderConstants";
 
-export const listProducts = (keyword = "") => async (dispatch) => {
+export const listProducts = (keyword = "", pageNumber = "") => async (
+  dispatch
+) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
-    const { data } = await axios.get(`/api/products?keyword=${keyword}`);
-
+    const { data } = await axios.get(
+      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+    );
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
